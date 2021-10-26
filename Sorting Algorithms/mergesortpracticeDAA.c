@@ -1,40 +1,57 @@
 #include<stdio.h>
-void merge( int l, int mid, int h)
+void merge(int A[], int l, int mid, int h)
 {
-	int i = 1,j = 1,k = 1;
-	int A[i],B[j],C[k];
-	while ( i <= l && j <= h)
+	int m = mid-l+1;
+	int n = h-mid;
+	int B[m], C[n];
+	int i,j;
+	
+	for (i=0; i<m; i++)
 	{
-		if (A[i] < B[j])
+		B[i] = A[l+1];
+	}
+	for (j=0; j<n; j++)
+	{
+		C[j] = A[mid+1+j];
+	}
+	i = 0,j = 0;
+	int k = l;
+	while ( i < m && j < n)
+	{
+		if (B[i] <= C[j])
 		{
-			C[k++] = A[i++];
+			A[k] = B[i];
+			i++;
 		}
 		else
 		{
-			C[k++] = B[j++];
+			A[k] = C[j];
+			j++;
 		}
+		k++;
 	}
-	for (i = 0; i <= l; i++)
+	while (i<m)
 	{
-		C[k++] = A[i];
+		A[k] = B[i];
+		i++;
+		k++;
 	}
-	for (j = 0; j <= h; j++)
+	while (j<n)
 	{
-		C[k++] = B[j];
+		A[k] = C[j];
+		j++;
+		k++;
 	}
 }
-void mergesort (int l, int h)
+void mergesort (int A[], int l, int h)
 {
-	//int n;
 	if (l < h)
 	{
-		int mid = (l+h)/2;
-		mergesort(l,mid);
-		mergesort(mid+1,h);
-		merge(l,mid,h);
+		int mid = l+(h-1)/2;
+		mergesort(A,l,mid);
+		mergesort(A,mid+1,h);
+		merge(A,l,mid,h);
 	}
-	else
-		return;
 }
 int main()
 {
@@ -48,7 +65,7 @@ int main()
 	{
 		scanf("%d",&A[i]);
 	}
-	mergesort(0,n);
+	mergesort(A,0,n);
 	printf("sorted array\n");
 	for(i = 0; i < n; i++)
 	{
