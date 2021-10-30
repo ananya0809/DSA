@@ -1,15 +1,14 @@
 #include<stdio.h>
 void merge(int A[], int l, int mid, int h)
 {
-	mid = (l+h)/2;
-	int m = mid-l;
-	int n = h-(mid+1);
+	int m = (mid-l)+1;
+	int n = h-mid;
 	int B[m], C[n];
 	int i,j;
 	
 	for (i=0; i<m; i++)
 	{
-		B[i] = A[l+1];
+		B[i] = A[l+i];
 	}
 	for (j=0; j<n; j++)
 	{
@@ -44,11 +43,12 @@ void merge(int A[], int l, int mid, int h)
 		k++;
 	}
 }
+
 void mergesort (int A[], int l, int h)
 {
 	if (l < h)
 	{
-		int mid = (l+h)/2;
+		int mid = l+(h-1)/2;
 		mergesort(A,l,mid);
 		mergesort(A,mid+1,h);
 		merge(A,l,mid,h);
@@ -66,7 +66,7 @@ int main()
 	{
 		scanf("%d",&A[i]);
 	}
-	mergesort(A,0,n);
+	mergesort(A,0,n-1);
 	printf("sorted array\n");
 	for(i = 0; i < n; i++)
 	{
