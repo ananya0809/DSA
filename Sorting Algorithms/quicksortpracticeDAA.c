@@ -47,8 +47,8 @@ int main()
 	{
 		scanf("%d",&A[p]);
 	}
-	l = A[0];
-	h = n-1;
+	l = 0;
+	h = n;
 	quicksort(A,l,h);
 	printf("sorted array\n");
 	for(p = 0; p <= n-1; p++)
