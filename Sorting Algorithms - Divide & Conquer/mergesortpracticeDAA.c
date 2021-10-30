@@ -1,8 +1,9 @@
 #include<stdio.h>
 void merge(int A[], int l, int mid, int h)
 {
-	int m = mid-l+1;
-	int n = h-mid;
+	mid = (l+h)/2;
+	int m = mid-l;
+	int n = h-(mid+1);
 	int B[m], C[n];
 	int i,j;
 	
@@ -47,7 +48,7 @@ void mergesort (int A[], int l, int h)
 {
 	if (l < h)
 	{
-		int mid = l+(h-1)/2;
+		int mid = (l+h)/2;
 		mergesort(A,l,mid);
 		mergesort(A,mid+1,h);
 		merge(A,l,mid,h);
