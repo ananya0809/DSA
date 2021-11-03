@@ -1,4 +1,19 @@
 #include<stdio.h>
+int maximum(float A[],int n)
+{
+	int i;
+	float max = A[0];
+	for(i=0;i<n;i++)
+	{
+		if(max < A[i])
+		{
+			max = A[i];
+		}
+	}
+	
+	printf("maximum ratio from array = %.2f",max);
+	return i;
+}
 int main()
 {
 	int m;
@@ -16,21 +31,13 @@ int main()
 		printf("enter the profit of item %d: ",i+1);
 		scanf("%d",&p[i]);
 	}
-	float r[n],max;
+	float r[n];
 	for (i=0;i<n;i++)
 	{
 		r[i] = ((float)p[i]/(float)w[i]);
 		printf("the profit by weight ratio of item %d = %.2f\n", i+1, r[i]);
 	}
-	for(i=0;i<n;i++)
-	{
-		if(r[0] < r[i])
-		{
-			r[0] = r[i];
-			max = r[i];
-		}
-	}
+	maximum(r,n);
 	
-	printf("%.2f",max);
 	
 }
