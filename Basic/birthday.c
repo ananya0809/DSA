@@ -4,11 +4,11 @@ int main()
 {
 	int date, month, year;
 	printf("Enter your Date of Birth in format dd-mm-yyyy\n");
-	scanf("%d-%02d-%02d\n",&date, &month, &year);
+	scanf("%d-%02d-%04d",&date, &month, &year);
 	time_t day = time(NULL);
 	struct tm tm = *localtime(&day);
 	printf("Today is %d-%02d-%02d\n", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
-	if((tm.tm_year + 1900)>=year)
+	if((tm.tm_year + 1900) >= year)
 	{
 		if(tm.tm_mday == date && (tm.tm_mon+1) == month)
 		{
@@ -19,7 +19,7 @@ int main()
 			printf("Sorry! Today is not your birthday :(");
 		}
 	}
-	else
+	else if((tm.tm_year + 1900) < year)
 	{
 		printf("Looks like you haven't been born yet!");
 	}
