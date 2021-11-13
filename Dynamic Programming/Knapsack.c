@@ -4,7 +4,7 @@ int main()
 	int P[5] = {0,1,2,5,6};
 	int W[5] = {0,2,3,4,5};
 	int m = 8, n = 4;
-	int K[5][9];
+	int K[n+1][m+1];
 	int i,w;
 	for(i=0;i<=n;i++)
 	{
@@ -14,9 +14,9 @@ int main()
 			{
 				K[i][w] = 0;
 			}
-			else if (W[i] <= w)
+			else if (W[i-1] <= w)
 			{
-				K[i][w] = max(P[i] + K[i-1][w-W[i]],K[i-1][w]);
+				K[i][w] = max(P[i-1] + K[i-1][w-W[i-1]],K[i-1][w]);
 			}
 			else 
 			{
@@ -24,5 +24,10 @@ int main()
 			}
 		}
 	}
-	printf("%d",K[n][w]);
+	printf("%d",K[n][m]);
 }
+int max(int a, int b)
+{ 
+	return (a > b)? a : b; 
+}
+
